@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:id="@+id/listView_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_item_bg_chashuihao"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/nametextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="@dimen/left_padding_or_margin"
+                android:paddingRight="@dimen/right_padding_or_margin"
+                android:singleLine="true"
+                android:text="九次方大数据"
+                android:textColor="#363636"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/left_padding_or_margin"
+                android:paddingRight="@dimen/right_padding_or_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        skin:enable="true" />
+
+                    <TextView
+                        android:id="@+id/distanceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dip"
+                        android:singleLine="true"
+                        android:text="300km"
+                        android:textColor="@color/list_sub_content_lighttextcolor"
+                        android:textSize="14dp"
+                        android:visibility="gone"
+                        skin:enable="true" />
+
+                    <TextView
+                        android:id="@+id/division_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dip"
+                        android:text="|"
+                        android:textColor="@color/list_sub_content_lighttextcolor"
+                        android:textSize="14dp"
+                        android:visibility="gone"
+                        skin:enable="true" />
+
+                    <TextView
+                        android:id="@+id/area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dip"
+                        android:singleLine="true"
+                        android:text="北京"
+                        android:textColor="@color/list_sub_content_lighttextcolor"
+                        android:textSize="14dp"
+                        skin:enable="true" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/server"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/icon_legal_near"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="5dip"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#6C6C6C"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/left_padding_or_margin"
+                android:paddingRight="@dimen/right_padding_or_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/assets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="资产"
+                        android:textColor="@color/list_sub_content_lighttextcolor"
+                        android:textSize="14dp"
+                        skin:enable="true" />
+
+                    <TextView
+                        android:id="@+id/assets_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:singleLine="true"
+                        android:text="90,00万元"
+                        android:textColor="@color/list_sub_content_hightextcolor"
+                        android:textSize="14dp"
+                        skin:enable="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="营收"
+                        android:textColor="@color/list_sub_content_lighttextcolor"
+                        android:textSize="14dp"
+                       />
+
+                    <TextView
+                        android:id="@+id/income_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:singleLine="true"
+                        android:text="88,00万元"
+                        android:textColor="@color/list_sub_content_hightextcolor"
+                        android:textSize="14dp"
+                       />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/last_View_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listView_layout"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@drawable/listview_divider_n"
+                skin:enable="true" />
+
+            <TextView
+                android:id="@+id/noCompanyText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/relative_layout_height"
+                android:background="#E56363"
+                android:gravity="center"
+                android:text="没找到企业？点击这里再试试"
+                android:textColor="#FFF"
+                android:textSize="16dp"
+                skin:enable="true" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

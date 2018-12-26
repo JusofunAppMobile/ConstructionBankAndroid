@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/no_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/nodata_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/no_find_data_image"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/temp_line"
+        android:layout_marginBottom="20dip"
+        />
+
+    <View
+        android:id="@+id/temp_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/white"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/nodata_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无数据"
+        android:textSize="16dp"
+        android:textColor="@color/list_title_text_color"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/temp_line"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+
+    <TextView
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:id="@+id/txt"
+        android:gravity="center"
+        android:text="txt"
+        android:textSize="15sp"
+        android:textColor="@color/color_text_menu_unselect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/company_vector_drawable"
+        />
+
+
+</LinearLayout>

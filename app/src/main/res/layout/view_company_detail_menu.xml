@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_underline_gray"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="3dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/img_compay_lab" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="21dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="企业背景"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/img_jiantou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/img_down_jiantou" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_company_menu"
+        android:visibility="gone" />
+
+
+</LinearLayout>

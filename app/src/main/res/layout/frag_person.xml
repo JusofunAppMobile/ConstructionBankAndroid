@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/view_navigation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#FFF"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/vHeadIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            app:riv_border_color="#999"
+            app:riv_border_width="0dip"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"
+            app:riv_tile_mode="repeat" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvOrgan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/C_114"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            style="@style/C_115"
+            app:srcCompat="@drawable/icon_kehuguanli"
+            android:adjustViewBounds="true"
+            android:layout_height="22dp"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            style="@style/C_116"
+            android:text="客户管理" />
+
+    </LinearLayout>
+
+    <View style="@style/C_Line" />
+
+    <LinearLayout
+        android:id="@+id/vCustom"
+        style="@style/C_114"
+        >
+
+        <ImageView
+            style="@style/C_115"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/img_ic2" />
+
+        <TextView
+            style="@style/C_116"
+            android:text="我的客户" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/img_arrow_right" />
+
+    </LinearLayout>
+
+    <View style="@style/C_Line" />
+
+    <LinearLayout
+        android:id="@+id/layout_jincheng"
+        style="@style/C_114">
+
+        <ImageView
+            style="@style/C_115"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/img_ic2" />
+
+        <TextView
+            style="@style/C_116"
+            android:text="客户跟进日程表" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/img_arrow_right" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/vMessage"
+        style="@style/C_114"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            style="@style/C_115"
+            app:srcCompat="@drawable/img_chanpinyingxiao" />
+
+        <TextView
+            style="@style/C_116"
+            android:text="产品营销" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/img_arrow_right" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/text_huibao"
+        style="@style/C_114"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            style="@style/C_115"
+            app:srcCompat="@drawable/img_huibaogaozuo" />
+
+        <TextView
+            style="@style/C_116"
+            android:text="工作汇报" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/img_arrow_right" />
+
+    </LinearLayout>
+
+    <View style="@style/C_Line" />
+
+    <LinearLayout
+        android:id="@+id/text_about"
+        style="@style/C_114"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            style="@style/C_115"
+            app:srcCompat="@drawable/img_guanyu" />
+
+        <TextView
+            style="@style/C_116"
+            android:text="关于" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/img_arrow_right" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btLogout"
+        style="@style/C_Common_Bt"
+        android:layout_marginBottom="80dp"
+        android:text="退出登录" />
+
+
+</LinearLayout>

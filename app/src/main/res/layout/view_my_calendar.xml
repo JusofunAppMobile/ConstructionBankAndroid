@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <LinearLayout
+            android:id="@+id/layout_left_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:src="@drawable/img_left_month" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:src="@drawable/img_left_month"
+                android:layout_marginLeft="-8dp"/>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+
+            <ImageView
+                android:id="@+id/img_left_money"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_left_month" />
+            <TextView
+                android:id="@+id/main_YYMM_Tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#2e2e39"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/img_right_money"
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_right_moneth" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_right_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:src="@drawable/img_right_moneth"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:src="@drawable/img_right_moneth"
+                android:layout_marginLeft="-8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <sun.bob.mcalendarview.views.WeekColumnView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp" />
+
+
+    <sun.bob.mcalendarview.views.ExpCalendarView
+        android:id="@+id/calendar_exp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity" />
+
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+{
+    "result": 0,
+    "msg": "success",
+    "data": {
+        "list": [
+            {
+                "companyid": "431",
+                "companyname": "北京百度网讯科技有限公司",
+                "address": "北京市海淀区上地十街10号百度大厦2层",
+                "distance": 6151,
+                "followState": 4,
+                "type": 2,
+                "classify": "",
+                "name": "王倩倩",
+                "phone": "15110085632",
+                "detailAddress": "",
+                "id": 276,
+                "time": "2018-12-05 上午",
+                "job": "CEO",
+                "desc": "与客户沟通具体需求",
+                "longitude": "40.04786927405771"
+            },
+            {
+                "companyid": "476057",
+                "companyname": "国家开发银行股份有限公司",
+                "address": "北京市西城区复兴门内大街18号",
+                "distance": 15226,
+                "followState": 2,
+                "type": 2,
+                "classify": "",
+                "name": "王倩倩",
+                "phone": "15110085632",
+                "detailAddress": "",
+                "id": 276,
+                "time": "2018-12-05 上午",
+                "job": "CEO",
+                "desc": "与客户沟通具体需求",
+                "longitude": "40.04786927405771"
+            },
+            {
+                "companyid": "675125",
+                "companyname": "北京小米电子软件技术有限公司",
+                "address": "北京市北京经济技术开发区科创十四街99号33幢D栋2层2203号(集中办公区)",
+                "distance": 33497,
+                "followState": 3,
+                "type": 2,
+                "classify": "",
+                "name": "王倩倩",
+                "phone": "15110085632",
+                "detailAddress": "",
+                "id": 276,
+                "time": "2018-12-05 上午",
+                "job": "CEO",
+                "desc": "与客户沟通具体需求",
+                "longitude": "40.04786927405771"
+            },
+            {
+                "companyid": "166968297",
+                "companyname": "和平永恒科技产业有限公司",
+                "address": "北京市朝阳区朝阳门北大街乙12号1号楼4层04公寓C",
+                "distance": 13873,
+                "followState": 5,
+                "type": 2,
+                "classify": "",
+                "name": "王倩倩",
+                "phone": "15110085632",
+                "detailAddress": "",
+                "id": 276,
+                "time": "2018-12-05 上午",
+                "job": "CEO",
+                "desc": "与客户沟通具体需求",
+                "longitude": "40.04786927405771"
+            }
+        ],
+        "totalCount": 32,
+        "havePageIndex": 0,
+        "lastPage": 0
+    }
+}

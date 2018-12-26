@@ -1,0 +1,90 @@
+<resources>
+    <dimen name="height_navigation">50dp</dimen>
+    <dimen name="line_height">.8dp</dimen>
+    <dimen name="common_bt_width">200dp</dimen>
+    <dimen name="yellow_top_height">50dp</dimen>
+    <dimen name="padding_margin_left_or_right">10dp</dimen>
+    <dimen name="title_view_height">48dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- activity title height -->
+    <dimen name="height_top_bar">48dp</dimen>
+    <dimen name="top_bar_center_text_size">18dp</dimen>
+
+    <dimen name="textsize_select">16sp</dimen>
+    <dimen name="textsize_normal">14sp</dimen>
+
+    <dimen name="fragment_common_list_smart_tab_padding">20dp</dimen>
+    <dimen name="fragment_common_list_smart_tab_indicator_height">2dp</dimen>
+    <dimen name="fragment_common_list_smart_tab_indicator_radius">2dp</dimen>
+
+    <!-- 加载框 -->
+    <dimen name="default_progress_bar_width">100.0dip</dimen>
+    <dimen name="default_progress_bar_height">100.0dip</dimen>
+
+    <!--scroll下拉刷新-->
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <integer name="card_flip_time_full">200</integer>
+    <integer name="card_flip_time_half">200</integer>
+
+
+    <!--高级搜索输入条件高度-->
+    <integer name="advanced_search_condition_height">48</integer>
+    <integer name="advanced_search_condition_margin">20</integer>
+
+    <dimen name="relative_layout_height">50dp</dimen>
+
+    <dimen name="title_view_center_textsize">18dp</dimen>
+    <dimen name="title_view_right_textsize">16dp</dimen>
+
+    <dimen name="button_margin_left_right">32dp</dimen>
+    <dimen name="head_image_size">102dp</dimen><!--头像的大小-->
+
+    <!--对话框-->
+    <dimen name="bg_radius_dialog">4dp</dimen>
+
+    <!-- listview高度 -->
+    <dimen name="item_list_min_height">90dp</dimen>
+
+    <dimen name="tab_text_size">16sp</dimen>
+    <dimen name="tab_text_size_select">16sp</dimen>
+
+
+
+
+
+
+
+    <dimen name="titleView_height">48dp</dimen>
+    <dimen name="title_right_textsize">16dp</dimen>
+    <dimen name="title_center_textsize">18dp</dimen>
+
+    <dimen name="left_padding_or_margin">13dp</dimen>
+    <dimen name="right_padding_or_margin">10dp</dimen>
+
+
+    <!-- textchooseview 文字大小-->
+    <dimen name="textchoose_textsize">15dp</dimen>
+
+
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="textandiconmargin">10dp</dimen>
+
+    <dimen name="loading_width">160dp</dimen>
+    <dimen name="loading_height">160dp</dimen>
+    <dimen name="login_input_height">45dp</dimen>
+    <dimen name="login_input_margin_top">16dp</dimen>
+    <dimen name="login_margin_left">32dp</dimen>
+
+    <dimen name="time_width">40dp</dimen>
+    <dimen name="time_height">170dp</dimen>
+    <dimen name="height_map_address">220dp</dimen>
+
+    <dimen name="bar_width">10dp</dimen>
+</resources>

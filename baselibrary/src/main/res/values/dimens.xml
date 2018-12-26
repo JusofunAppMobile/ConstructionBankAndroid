@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 加载框 -->
+    <dimen name="default_progress_bar_width">100dip</dimen>
+    <dimen name="default_progress_bar_height">100dip</dimen>
+
+    <dimen name="textandiconmargin">10dp</dimen>
+    <dimen name="loadmore_width">30dp</dimen>
+</resources>

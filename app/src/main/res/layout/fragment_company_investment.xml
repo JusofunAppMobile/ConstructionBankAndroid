@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_color"
+        />
+
+    <com.jusfoun.jusfouninquire.xlistview.XListView
+        android:id="@+id/list_company"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_below="@+id/line2"
+        android:divider="@android:color/transparent"
+        style="@style/xlistview_style"
+        />
+
+    <include
+        android:id="@+id/no_data_layout"
+        layout="@layout/no_data_layout"
+        android:layout_below="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <com.qxb.jianhang.ui.view.NetWorkErrorView
+        android:id="@+id/net_work_error"
+        android:layout_below="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <include layout="@layout/layout_loading"/>
+
+</RelativeLayout>

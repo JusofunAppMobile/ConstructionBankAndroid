@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">企业精准营销</string>
+
+    <!-- listview 上拉加载下拉刷新 -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <!--企业图谱-->
+    <string name="shareholder">股东</string>
+    <string name="investment">投资</string>
+    <string name="net_error">连接失败，请检查网络设置</string>
+
+    <string name="message_push_input_hint">请点击编辑您的消息</string>
+
+
+    <string name="style_name_register">\@ccb.com</string>
+</resources>
+

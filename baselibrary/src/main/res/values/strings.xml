@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BaseLibrary</string>
+    <string name="xlistview_footer_hint_normal">加载更多</string>
+
+    <string name="load_data_warn_str">数据加载中\u2026</string>
+
+    <string name="listview_header_hint_normal">下拉刷新</string>
+    <string name="listview_header_hint_release">释放立即刷新</string>
+    <string name="listview_header_last_time">上次更新时间：</string>
+    <string name="listview_loading">正在加载...</string>
+    <string name="loading_done">加载完成</string>
+    <string name="nomore_loading">已全部加载完毕</string>
+    <string name="refresh_done">刷新完成</string>
+    <string name="refreshing">正在刷新...</string>
+
+    <string name="req_jusfoun_url"></string>
+    <string name="permissio_name_write">在设置-应用-中国网-权限中开启存储空间权限，以正常使用应用</string>
+    <string name="permissio_name_read_phone">在设置-应用-中国网-权限中开启读取手机信息权限，以正常使用应用</string>
+
+
+</resources>

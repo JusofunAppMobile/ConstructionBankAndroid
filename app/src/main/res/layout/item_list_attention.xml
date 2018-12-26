@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/attention_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_margin_left_or_right"
+                android:paddingRight="@dimen/padding_margin_left_or_right"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:textColor="@color/list_title_text_color"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/attention_legal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/attention_company_state"
+                android:maxLength="12"
+                android:layout_below="@+id/attention_company_name"
+                android:layout_marginLeft="@dimen/padding_margin_left_or_right"
+                android:drawableLeft="@mipmap/legal_icon"
+                android:drawablePadding="5dip"
+                android:paddingBottom="6dp"
+                android:textColor="@color/list_subtitle_text_color"
+                android:textSize="13dp"
+                />
+
+            <TextView
+                android:id="@+id/attention_company_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/attention_company_name"
+                android:layout_marginRight="@dimen/padding_margin_left_or_right"
+                android:layout_marginTop="10dip"
+                android:drawablePadding="5dp"
+                android:gravity="right"
+                android:textColor="@color/list_subtitle_text_color"
+                android:textSize="13dp"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/drive_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/attention_legal"
+            android:layout_marginLeft="@dimen/padding_margin_left_or_right"
+            android:layout_marginRight="@dimen/padding_margin_left_or_right"
+            android:background="@color/line_color" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/update_layout"
+        android:layout_width="25dip"
+        android:layout_height="26dip"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/update_icon"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/update_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="1dip"
+            android:layout_marginTop="1dip"
+            android:text="新"
+            android:textColor="@color/white"
+            android:textSize="12dp" />
+    </RelativeLayout>
+</RelativeLayout>

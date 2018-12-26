@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/error_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_err_tip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:layout_above="@+id/error_text"
+        />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络不给力，点击刷新试试"
+        android:textSize="16dp"
+        android:layout_centerVertical="true"
+        android:textColor="#7E7E7E"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/net_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/error_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:id="@+id/net_refresh_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/net_refresh_text"
+            android:src="@mipmap/net_refresh"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/net_refresh_text"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:textSize="14dp"
+            android:textColor="@color/common"
+            android:text="点击刷新"
+            android:background="@drawable/shape_common_stroke"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

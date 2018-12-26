@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="common">#00a8e3</color>
+    <color name="search_info_color">#1E9EFB</color>
+    <color name="backgroudcolor">#f1f4f4</color> <!--一般页面的背景-->
+    <color name="color_bg">#704c4c4c</color>
+    <color name="list_title_text_color">#343434</color>
+    <color name="list_subtitle_text_color">#999c9c</color>
+    <color name="line_bg">#edebe9</color>
+
+
+    <!--企业图谱相关颜色 -->
+    <color name="shareholder">#fe741f</color>
+    <color name="investment">#26c180</color>
+    <color name="company_map_text">#323232</color>
+    <color name="color_text_company_map_info">#353535</color>
+
+
+    <!--金融终端先关-->
+    <color name="type_item_text_ffb2b2">#ffb2b2</color>
+    <color name="list_adapter_nodata_color">#828590</color>
+    <color name="filter_type_layout_bg_n">#E35353</color>
+    <color name="background_color">#f1f1f1</color>
+    <color name="findpwd_line_color">#46484d</color>
+    <color name="background_color_n">#F9F9F9</color>
+    <color name="city_list_bgcolor_n">#eaeaea</color>
+    <drawable name="city_list_bg_n">@color/city_list_bgcolor_n</drawable>
+    <color name="list_sub_content_hightextcolor">#d00808</color>
+    <color name="list_sub_content_lighttextcolor">#999999</color>
+    <drawable name="listview_divider_n">#C9C9C9</drawable>
+    <color name="city_list_bgcolor">#f6f6f6</color>
+    <drawable name="city_list_bg">@color/city_list_bgcolor</drawable>
+    <color name="color_home_back">#ff6207</color>
+    <color name="color_text_company_detail_menu">#7d7d7d</color>
+    <color name="color_text_menu_unclick">#aaaaaa</color>
+    <color name="company_map_un_click_text">#969696</color>
+    <color name="company_map_cleck_text">#343434</color>
+    <color name="color_company_map_line">#d8d8d9</color>
+    <color name="color_bg_menu">#d9d9d9</color>
+
+    <color name="color_text_menu_select">#fb6600</color>
+    <color name="color_text_menu_unselect">#323232</color>
+    <color name="color_text_contact_way">#ff7833</color>
+    <color name="color_text_contact_close">#666666</color>
+    <color name="color_text_home_company">#ffdebb</color>
+    <color name="color_text_title">#332923</color>
+    <color name="color_bg_line">#d5d5d5</color>
+    <color name="color_text_yellow">#ff721f</color>
+    <color name="color_text_black">#333333</color>
+</resources>

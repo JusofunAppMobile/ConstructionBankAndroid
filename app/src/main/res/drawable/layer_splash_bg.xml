@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 这种处理方式避免启动页使用点9图片刚开始无效的情况-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <color android:color="#00000000" />
+    </item>
+    <!--<item>-->
+        <!--<bitmap android:src="@drawable/img_splash" />-->
+    <!--</item>-->
+
+</layer-list>

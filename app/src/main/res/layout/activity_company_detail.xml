@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <com.jusfoun.jusfouninquire.view.TitleView
+        android:id="@+id/view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.qxb.jianhang.ui.view.ObserveScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_report"
+        android:layout_below="@+id/view_title"
+        android:fillViewport="true"
+        android:paddingLeft="0dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/vBarEmpty1"
+                android:layout_width="1px"
+                android:layout_height="20dp"
+                android:visibility="gone" />
+
+            <com.qxb.jianhang.ui.view.CompanyDetailHeaderView
+                android:id="@+id/headerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_underline_gray"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="3dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/img_compay_lab" />
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="21dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="21dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="企业背景"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/company_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_company_menu" />
+
+            <!--风险信息-->
+            <com.qxb.jianhang.ui.view.CompanyDetailMenuView
+                android:id="@+id/view_risk_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <!--经营状况-->
+            <com.qxb.jianhang.ui.view.CompanyDetailMenuView
+                android:id="@+id/view_operating_conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <!--无形资产-->
+            <com.qxb.jianhang.ui.view.CompanyDetailMenuView
+                android:id="@+id/view_intangible_assets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </com.qxb.jianhang.ui.view.ObserveScrollView>
+
+    <RelativeLayout
+        android:id="@+id/layout_report"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="gone">
+
+
+        <LinearLayout
+            android:id="@+id/vTypeSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvTypeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="企业报告"
+                android:textColor="#ff8600"
+                android:textSize="14sp" />
+
+
+            <ImageView
+                android:id="@+id/vArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="8dp"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_look_report"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="查看"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <View
+            style="@style/C_Line"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <com.qxb.jianhang.ui.view.NetWorkErrorView
+        android:id="@+id/net_work_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/loading_img"
+            android:layout_width="@dimen/loading_width"
+            android:layout_height="@dimen/loading_height"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+</RelativeLayout>

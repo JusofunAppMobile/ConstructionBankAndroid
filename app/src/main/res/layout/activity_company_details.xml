@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    style="@style/MyTheme.Layout.Root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroudcolor"
+    android:orientation="vertical">
+
+    <com.qxb.jianhang.ui.view.PullMenuTitleView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <com.jusfoun.jusfouninquire.widget.CompanyDetailsViewPager
+        android:id="@+id/pager_company"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        android:background="@color/white">
+
+    </com.jusfoun.jusfouninquire.widget.CompanyDetailsViewPager>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        android:background="@color/color_bg"
+        android:visibility="gone" />
+
+</RelativeLayout>

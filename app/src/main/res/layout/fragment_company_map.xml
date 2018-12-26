@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroudcolor">
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/tip_marker_layout"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="center"
+            android:layout_marginLeft="74dp"
+            android:layout_marginRight="74dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/gudong_layout"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/gudong_Text"
+                    android:layout_width="77dip"
+                    android:layout_height="77dip"
+                    android:background="@drawable/bg_company_map_shareholder"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/company_map_text"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:id="@+id/touzi_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/touzi_Text"
+                    android:layout_width="77dip"
+                    android:layout_height="77dip"
+                    android:background="@drawable/bg_company_map_investent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/company_map_text"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/indicate_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="50dip"
+            android:layout_marginRight="7dip"
+            android:layout_marginTop="12dip"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/indicate_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/indicate_one"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/indicate_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="点击查看大图"
+                android:textSize="14dip" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/atlas_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/indicate_layout"
+            android:layout_below="@+id/tip_marker_layout"
+            android:layout_marginTop="15dip"
+            >
+
+            <com.jusfoun.jusfouninquire.view.LineDrawAnimView
+                android:background="@color/backgroudcolor"
+                android:gravity="center"
+                android:id="@+id/line_draw_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:src="@mipmap/image_extend"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tip_open_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                 />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.qxb.jianhang.ui.view.NetWorkErrorView
+        android:id="@+id/net_work_error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include
+        layout="@layout/layout_loading"/>
+
+</RelativeLayout>

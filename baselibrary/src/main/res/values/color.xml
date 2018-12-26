@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_black_7f">#8f000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="app_bg_color">#161616</color>
+    <color name="line_color">#585859</color>
+    <color name="quotes_up">#ff4634</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="home_bottom_btn">#fca43d</color>
+</resources>
