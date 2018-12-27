@@ -3,6 +3,7 @@ package com.qxb.jianhang.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -90,6 +91,7 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
             model = (SearchListModel) getArguments().get("model");
         }
         if (getArguments() != null && getArguments().get("poiInfoModel") != null) {
+
             poiInfoModel = (PoiInfoModel) getArguments().get("poiInfoModel");
         }
         companyItemAdapter = new CompanyItemAdapter(mContext);
@@ -175,6 +177,7 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
             companyItemAdapter.refreshList(list);
             return;
         }
+
 
         if (model != null && poiInfoModel != null && model.searchType == SearchMapTitleView.TYPE_ADDRESS) {
             goSearch(poiInfoModel, isRefresh);

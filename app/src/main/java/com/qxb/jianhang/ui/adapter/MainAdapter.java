@@ -36,6 +36,7 @@ public class MainAdapter extends FragmentPagerAdapter {
         super(fm);
         model.searchKey=searchKey;
         list.add(MainFragmentUtil.getInstance(MainFragmentUtil.TYPE_MAP,model));
+        Log.e("tag","poiInfoModelpoiInfoModelpoiInfoModelpoiInfoModel2"+model.list.size());
         list.add(HomeCompanyListFragment.getInstance(model,poiInfoModel));
     }
 

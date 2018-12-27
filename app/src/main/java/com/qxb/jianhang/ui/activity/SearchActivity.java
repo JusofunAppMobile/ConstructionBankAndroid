@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -94,8 +95,9 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
             if(model!=null){
                 type = model.searchType;
             }
-
+            Log.e("tag","poiInfoModelpoiInfoModelpoiInfoModelpoiInfoModel1"+model.list.size());
             poiInfoModel = (PoiInfoModel) getIntent().getExtras().get("poiInfoModel");
+
         }
         searchKey = getIntent().getStringExtra(SEARCH_KEY);
         mainAdapter = new MainAdapter(getSupportFragmentManager(), searchKey, model,poiInfoModel);
@@ -241,7 +243,7 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         map.put("address", poiInfoModel.address);
         map.put("longitude", poiInfoModel.latitude + "");
         map.put("latitude", poiInfoModel.longitude + "");
-
+        map.put("merge", "1");
         addNetwork(Api.getInstance().getService(ApiService.class).getHomeMapNet(map), new Action1<NetModel>() {
             @Override
             public void call(NetModel net) {

@@ -217,7 +217,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
     }
 
 
-    private void goSearch(PoiInfoModel poiInfoModel ) {
+    private void goSearch(final PoiInfoModel poiInfoModel ) {
         showLoadDialog();
         addressRecycler.setVisibility(View.GONE);
 
@@ -225,6 +225,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
         map.put("myLongitude", poiInfoModel.longitude + "");
         map.put("myLatitude", poiInfoModel.latitude + "");
         map.put("precision", "6");
+        map.put("merge", "1");
         addNetwork(Api.getInstance().getService(ApiService.class).getHomeMapNet(map), new Action1<NetModel>() {
             @Override
             public void call(NetModel net) {
@@ -233,11 +234,13 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
                     CompanyListModel companyListModel = net.dataToObject(CompanyListModel.class);
                     SearchListModel model = new SearchListModel();
                     model.list = companyListModel.list2;
+
+                    Log.e("tag","model.list==="+model.list.size()+" "+companyListModel.list2.size());
                     Intent intent = new Intent(mContext, SearchActivity.class);
                     Bundle bundle = new Bundle();
-
                     model.searchType = type;
                     bundle.putSerializable("model", model);
+                    bundle.putSerializable("poiInfoModel", poiInfoModel);
                     intent.putExtra(SearchActivity.SEARCH_KEY, viewSearch.getSearchText());
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);

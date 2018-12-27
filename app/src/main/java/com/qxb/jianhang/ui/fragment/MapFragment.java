@@ -284,10 +284,6 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
             mBaiduMap.setMyLocationData(locData);
             bdLocation = location;
 
-//            LatLng srcCoord = new LatLng(location.getLatitude(),location.getLongitude());
-//            CoordinateConverter coordinateConverter = new CoordinateConverter();
-//            LatLng desCoord = coordinateConverter.from(CoordinateConverter.CoordType.BD09LL).coord( srcCoord).convert();
-//            Log.e("tag", "location=" + location.getLatitude() + " " + location.getLongitude());
             if (isFirstLoc) {
                 LocationSharepreferences.saveLocation(mContext, location.getLatitude(), location.getLongitude());
                 isFirstLoc = false;
@@ -297,8 +293,14 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
                 builder.target(ll).zoom(14.8f);
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
                 if (model != null) {
-                    drawSearchCompany(model.list);
+                    if(model.searchType == SearchMapTitleView.TYPE_ADDRESS){
+                        drawCompany(model.list);
+                    }else{
+                        drawSearchCompany(model.list);
+
+                    }
                     drawCompanyLocationCircle(location);
+
                 } else {
                     getMapNet(location);
                 }
@@ -459,6 +461,7 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
     LatLngBounds.Builder builder;
 
     private void drawSearchCompany(List<HomeDataItemModel> list) {
+
         markerMap.clear();
         mBaiduMap.clear();
         moreBitmapDesList.clear();
@@ -468,10 +471,9 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
             moreBitmapDesList.get(i).recycle();
         }
 
-
         for (int i = 0; i < list.size(); i++) {
             HomeDataItemModel model = list.get(i);
-            String key = model.latitude + "," + model.latitude;
+            String key = model.latitude + "," + model.longitude;
             if (!TextUtils.equals(key, ",")) {
                 if (searchMap.containsKey(key)) {
                     searchMap.get(key).add(model);
@@ -530,6 +532,7 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
 
 
             } catch (Exception e) {
+                Log.e("tag","listlistlist3="+searchMap.size());
             }
 
         }
@@ -554,6 +557,7 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
 //        map.put("myLatitude",  "30.2645270000");
         map.put("precision", "6");
 //        map.put("userId", "1");
+        map.put("merge", "1");
         addNetwork(Api.getInstance().getService(ApiService.class).getHomeMapNet(map), new Action1<NetModel>() {
             @Override
             public void call(NetModel net) {
