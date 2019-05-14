@@ -557,8 +557,12 @@ public class CompanyDetailActivity extends BaseInquireActivity {
         params.put("userId", AppUtils.getUserInfo().id);
         params.put("myLatitude", LocationSharepreferences.getLocation(mContext).lat);
         params.put("myLongitude", LocationSharepreferences.getLocation(mContext).lon);
-        params.put("t", timeOut.getParamTimeMollis() + "");
-        params.put("m", timeOut.MD5time() + "");
+        try {
+            params.put("t", timeOut.getParamTimeMollis() + "");
+            params.put("m", timeOut.MD5time() + "");
+        }catch (Exception e){
+
+        }
         NetWorkCompanyDetails.getCompanyDetails(mContext, params, getLocalClassName(), new NetWorkCallBack() {
             @Override
             public void onSuccess(Object data) {

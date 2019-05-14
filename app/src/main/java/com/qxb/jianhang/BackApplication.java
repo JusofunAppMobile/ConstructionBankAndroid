@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jusfoun.baselibrary.BaseApplication;
 import com.jusfoun.baselibrary.net.Api;
 import com.jusfoun.jusfouninquire.util.LoginSharePreference;

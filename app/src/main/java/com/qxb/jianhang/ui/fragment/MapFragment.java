@@ -199,13 +199,14 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
                 if (model == null || model.searchType == SearchMapTitleView.TYPE_ADDRESS) {
                     getCompanyByPoint(homeDataItemModel);
                 } else {
-                    ArrayList<HomeDataItemModel> list = searchMap.get(homeDataItemModel.latitude + "," + homeDataItemModel.latitude);
-                    if (list.size() > 1) {
+                    ArrayList<HomeDataItemModel> list = searchMap.get(homeDataItemModel.latitude + "," + homeDataItemModel.longitude);
+
+                    if (list!=null&&list.size() > 1) {
                         SearchListModel searchListModel = new SearchListModel();
                         searchListModel.list = list;
                         searchListModel.totalCount = list.size();
                         viewMultipleCompany.setData(searchListModel, null);
-                    } else if (list.size() == 1) {
+                    } else if (list!=null&&list.size() == 1) {
                         viewOneCompany.setData(list.get(0));
                     }
                 }

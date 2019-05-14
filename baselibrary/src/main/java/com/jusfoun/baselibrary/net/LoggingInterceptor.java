@@ -1,7 +1,6 @@
 package com.jusfoun.baselibrary.net;
 
 
-import com.jusfoun.baselibrary.BuildConfig;
 import com.orhanobut.logger.Logger;
 
 import org.json.JSONException;
@@ -46,8 +45,8 @@ public class LoggingInterceptor implements Interceptor {
             }
             body = buffer.readString(charset);
         }
-        if (BuildConfig.DEBUG)
-            Logger.e("发送请求\nmethod：  %s\nurl:     %s\nheaders: %s\nbody:    %s", request.method(), request.url(), headersToJson(request.headers()), body);
+
+        Logger.e("发送请求\nmethod：  %s\nurl:     %s\nheaders: %s\nbody:    %s", request.method(), request.url(), headersToJson(request.headers()), body);
 
         long startNs = System.nanoTime();
         Response response = chain.proceed(request);
@@ -72,9 +71,9 @@ public class LoggingInterceptor implements Interceptor {
             }
             rBody = buffer.clone().readString(charset);
         }
-        if (BuildConfig.DEBUG)
-            Logger.e("收到响应 %s%s %ss\nurl:     %s\nbody:    %s\nheader:  %s\nresponse: %s",
-                    response.code(), response.message(), tookMs, response.request().url(), body, headersToJson(request.headers()), rBody);
+
+        Logger.e("收到响应 %s%s %ss\nurl:     %s\nbody:    %s\nheader:  %s\nresponse: %s",
+                response.code(), response.message(), tookMs, response.request().url(), body, headersToJson(request.headers()), rBody);
         return response;
     }
 

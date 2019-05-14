@@ -71,7 +71,6 @@ public class Api {
 
     public Api register(Context mContext, String baseUrl,Interceptor interceptor) {
 
-        Log.e("tag","registerregisterregisterregister");
         File cacheFile = new File(mContext.getApplicationContext().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);//100Mb
         //设置证书

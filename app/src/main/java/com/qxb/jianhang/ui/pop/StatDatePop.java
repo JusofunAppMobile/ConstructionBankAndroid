@@ -57,6 +57,8 @@ public class StatDatePop extends PopupWindow {
         Calendar calendar = Calendar.getInstance();
         String date = sdf.format(calendar.getTime());
         tvStart.setText(date.substring(0, 8) + "01");
+
+//        tvStart.setText( "2018-01-01");
         tvEnd.setText(date);
     }
 

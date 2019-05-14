@@ -161,7 +161,8 @@ public class StatActivity extends BaseBackActivity implements OnChartValueSelect
     private void initStartEndDate() {
         Calendar calendar = Calendar.getInstance();
         String date = sdf.format(calendar.getTime());
-        startDate = date.substring(0, 8) + "01";
+//        startDate = date.substring(0, 8) + "01";
+        startDate ="2018-01-01";
         endDate = date;
     }
 
