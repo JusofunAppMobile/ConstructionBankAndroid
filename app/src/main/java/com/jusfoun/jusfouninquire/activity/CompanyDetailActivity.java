@@ -61,13 +61,14 @@ public class CompanyDetailActivity extends BaseInquireActivity {
     public static final String COMPANY_ID = "company_id";
     public static final String COMPANY_NAME = "company_name";
     public static final String COMPANY_STATE = "company_state";
+    public static final String COMPANY_DISTANCE = "company_distance";
     private CompanyDetailHeaderView headerView;
     private HashMap<String, String> params;
     private NetWorkErrorView netWorkError;
     private RecyclerView mCompanyMenu;
     private CompanyMenuAdapter adapter;
     private CompanyDetailModel model;
-    private String mCompanyId = "", mCompanyName;
+    private String mCompanyId = "", mCompanyName,companyDistance;
     private UserInfoModel userInfo;
     private boolean isHasLatLng;
     private ContactWayDialog contactWayDialog;
@@ -120,6 +121,7 @@ public class CompanyDetailActivity extends BaseInquireActivity {
                 companyType = bundle.getString(COMPANY_STATE);
             }
             mCompanyName = bundle.getString(COMPANY_NAME);
+            companyDistance=  bundle.getString(COMPANY_DISTANCE);
         }
         adapter = new CompanyMenuAdapter(mContext);
         userInfo = BackApplication.getUserInfo();
@@ -631,6 +633,7 @@ public class CompanyDetailActivity extends BaseInquireActivity {
 //            }
 
 //            model.type = companyType;
+            model.distance =companyDistance;
             headerView.setInfo(model);
             netWorkError.setVisibility(View.GONE);
             if (!TextUtils.isEmpty(model.getUpdatestate()))

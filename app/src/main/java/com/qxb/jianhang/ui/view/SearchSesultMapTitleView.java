@@ -226,8 +226,9 @@ public class SearchSesultMapTitleView extends BaseView {
     private boolean showAddress = false;
 
     public void setSearchText(String text) {
-        editSearch.setText(text);
         showAddress = false;
+        editSearch.setText(text);
+
     }
 
     public String getSearchKey() {

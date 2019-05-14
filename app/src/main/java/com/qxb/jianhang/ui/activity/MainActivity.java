@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
@@ -34,7 +31,6 @@ import com.jusfoun.baselibrary.view.HomeViewPager;
 import com.qxb.jianhang.R;
 import com.qxb.jianhang.ui.adapter.HommSearchTagAdapter;
 import com.qxb.jianhang.ui.adapter.MainAdapter;
-import com.qxb.jianhang.ui.adapter.PoiInfoAdapter;
 import com.qxb.jianhang.ui.base.BaseBackActivity;
 import com.qxb.jianhang.ui.constant.Constant;
 import com.qxb.jianhang.ui.data.CompanyListModel;
@@ -71,7 +67,6 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
     private PoiSearch mPoiSearch;
 
     private int type = SearchMapTitleView.TYPE_COMPANY;// 搜索类型 1. 企业 2.地址
-
 
 
     @Override
@@ -126,18 +121,18 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
             @Override
             public void search(String searchKey, int type) {
 
-                MainActivity.this.type= type;
-                if(type==SearchMapTitleView.TYPE_COMPANY) {
+                MainActivity.this.type = type;
+                if (type == SearchMapTitleView.TYPE_COMPANY) {
                     goSearch(searchKey);
-                }else {
-                    indexAddress(searchKey,type);
+                } else {
+                    indexAddress(searchKey, type);
                 }
             }
 
             @Override
             public void indexAddress(String searchKey, int type) {
-                MainActivity.this.type= type;
-                if(type==SearchMapTitleView.TYPE_ADDRESS) {
+                MainActivity.this.type = type;
+                if (type == SearchMapTitleView.TYPE_ADDRESS) {
                     searchAddress(searchKey);
                 }
             }
@@ -152,7 +147,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PoiInfoModel model =  (PoiInfoModel)adapter.getItem(position);
+                PoiInfoModel model = (PoiInfoModel) adapter.getItem(position);
                 goSearch(model);
             }
         });
@@ -217,7 +212,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
     }
 
 
-    private void goSearch(final PoiInfoModel poiInfoModel ) {
+    private void goSearch(final PoiInfoModel poiInfoModel) {
         showLoadDialog();
         addressRecycler.setVisibility(View.GONE);
 
@@ -235,7 +230,6 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
                     SearchListModel model = new SearchListModel();
                     model.list = companyListModel.list2;
 
-                    Log.e("tag","model.list==="+model.list.size()+" "+companyListModel.list2.size());
                     Intent intent = new Intent(mContext, SearchActivity.class);
                     Bundle bundle = new Bundle();
                     model.searchType = type;
@@ -281,7 +275,6 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
     }
 
 
-
     @Override
     public void onGetSuggestionResult(SuggestionResult res) {
 
@@ -292,8 +285,9 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
             //未找到相关结果
         }
 
-        if (res.getAllSuggestions() != null && !res.getAllSuggestions().isEmpty()) {
+        if (res.getAllSuggestions() != null && !res.getAllSuggestions().isEmpty() && viewSearch.getSearchText().length() > 0) {
             List<PoiInfoModel> list = new ArrayList<>();
+
             for (SuggestionResult.SuggestionInfo info : res.getAllSuggestions()) {
                 LogUtil.e(new Gson().toJson(info));
                 if (info.pt != null) {
@@ -321,7 +315,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
             addressRecycler.setVisibility(View.GONE);
             return;
         }
-        if (res.getAllPoi() != null && !res.getAllPoi().isEmpty()) {
+        if (res.getAllPoi() != null && !res.getAllPoi().isEmpty() && viewSearch.getSearchText().length() > 0) {
             List<PoiInfoModel> list = new ArrayList<>();
             for (PoiInfo info : res.getAllPoi()) {
                 list.add(new PoiInfoModel(info));
@@ -352,6 +346,7 @@ public class MainActivity extends BaseBackActivity implements View.OnClickListen
         if (mPoiSearch != null)
             mPoiSearch.destroy();
     }
+
     private void searchAddress(String key) {
         String city = PreferenceUtils.getString(this, Constant.LOC_CITY);
         if (TextUtils.isEmpty(city))

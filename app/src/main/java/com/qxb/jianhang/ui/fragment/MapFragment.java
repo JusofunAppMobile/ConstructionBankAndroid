@@ -735,7 +735,12 @@ public class MapFragment extends BaseBackFragment implements SensorEventListener
         if (event instanceof SearchEvent) {
             if (((SearchEvent) event).model != null && model != null) {
                 model = ((SearchEvent) event).model;
-                drawSearchCompany(((SearchEvent) event).model.list);
+                if(model.searchType == SearchMapTitleView.TYPE_ADDRESS){
+                    drawCompany(model.list);
+                }else{
+                    drawSearchCompany(model.list);
+
+                }
                 drawCompanyLocationCircle(bdLocation);
 //                    }
 

@@ -1,5 +1,7 @@
 package com.qxb.jianhang.ui.data;
 
+import android.text.TextUtils;
+
 import com.jusfoun.baselibrary.base.BaseModel;
 
 import java.io.Serializable;
@@ -131,6 +133,10 @@ public class HomeDataItemModel extends BaseModel implements Serializable {
     }
 
     public String getCompanyname() {
+        if (TextUtils.isEmpty(companyname) && !TextUtils.isEmpty(companyName)) {
+            return companyName;
+
+        }
         return companyname;
     }
 

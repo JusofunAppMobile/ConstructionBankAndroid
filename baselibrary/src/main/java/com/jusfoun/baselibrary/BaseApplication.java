@@ -15,7 +15,7 @@ import java.util.Stack;
  * Created by zhaoyapeng on 2017/10/11.
  * describe application 基类
  */
-
+//
 public class BaseApplication extends Application {
 
     /**

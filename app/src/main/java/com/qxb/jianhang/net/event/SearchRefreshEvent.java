@@ -1,6 +1,7 @@
 package com.qxb.jianhang.net.event;
 
 import com.jusfoun.baselibrary.event.IEvent;
+import com.qxb.jianhang.ui.data.PoiInfoModel;
 import com.qxb.jianhang.ui.data.SearchListModel;
 
 /**
@@ -10,5 +11,5 @@ import com.qxb.jianhang.ui.data.SearchListModel;
  * @Description ${搜索刷新event}
  */
 public class SearchRefreshEvent implements IEvent {
-
+  public  PoiInfoModel poiInfoModel;
 }

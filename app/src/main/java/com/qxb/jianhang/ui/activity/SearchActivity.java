@@ -1,12 +1,9 @@
 package com.qxb.jianhang.ui.activity;
 
-import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +23,6 @@ import com.jusfoun.baselibrary.Util.LogUtil;
 import com.jusfoun.baselibrary.Util.PreferenceUtils;
 import com.jusfoun.baselibrary.Util.ToastUtils;
 import com.jusfoun.baselibrary.event.IEvent;
-import com.jusfoun.baselibrary.model.UserModel;
 import com.jusfoun.baselibrary.net.Api;
 import com.jusfoun.baselibrary.net.NetModel;
 import com.jusfoun.baselibrary.view.HomeViewPager;
@@ -44,7 +40,6 @@ import com.qxb.jianhang.ui.data.PoiInfoModel;
 import com.qxb.jianhang.ui.data.SearchListModel;
 import com.qxb.jianhang.ui.net.ApiService;
 import com.qxb.jianhang.ui.sharedpreferences.LocationSharepreferences;
-import com.qxb.jianhang.ui.util.AppUtils;
 import com.qxb.jianhang.ui.view.SearchMapTitleView;
 import com.qxb.jianhang.ui.view.SearchSesultMapTitleView;
 
@@ -92,15 +87,14 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
 
         if (getIntent().getExtras() != null) {
             model = (SearchListModel) getIntent().getExtras().get("model");
-            if(model!=null){
+            if (model != null) {
                 type = model.searchType;
             }
-            Log.e("tag","poiInfoModelpoiInfoModelpoiInfoModelpoiInfoModel1"+model.list.size());
             poiInfoModel = (PoiInfoModel) getIntent().getExtras().get("poiInfoModel");
 
         }
         searchKey = getIntent().getStringExtra(SEARCH_KEY);
-        mainAdapter = new MainAdapter(getSupportFragmentManager(), searchKey, model,poiInfoModel);
+        mainAdapter = new MainAdapter(getSupportFragmentManager(), searchKey, model, poiInfoModel);
     }
 
     @Override
@@ -123,7 +117,6 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         addressRecycler.setLayoutManager(new LinearLayoutManager(this));
 
 
-
         viewpager.setNotTouchScoll(true);
         viewpager.setAdapter(mainAdapter);
         mainAdapter.notifyDataSetChanged();
@@ -137,18 +130,18 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         titleView.setCallBack(new SearchSesultMapTitleView.CallBack() {
             @Override
             public void search(String searchKey, int type) {
-                SearchActivity.this.type= type;
-                if(type==SearchMapTitleView.TYPE_COMPANY) {
-                    goSearch(searchKey,true);
-                }else {
-                    indexAddress(searchKey,type);
+                SearchActivity.this.type = type;
+                if (type == SearchMapTitleView.TYPE_COMPANY) {
+                    goSearch(searchKey, true);
+                } else {
+                    indexAddress(searchKey, type);
                 }
             }
 
             @Override
             public void indexAddress(String searchKey, int type) {
-                SearchActivity.this.type= type;
-                if(type==SearchMapTitleView.TYPE_ADDRESS) {
+                SearchActivity.this.type = type;
+                if (type == SearchMapTitleView.TYPE_ADDRESS) {
                     searchAddress(searchKey);
                 }
             }
@@ -161,8 +154,9 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PoiInfoModel model =  (PoiInfoModel)adapter.getItem(position);
-                goSearch(model);
+                PoiInfoModel model = (PoiInfoModel) adapter.getItem(position);
+                poiInfoModel = model;
+                goSearch(model, true);
             }
         });
     }
@@ -232,8 +226,10 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
     }
 
 
-    private void goSearch(final PoiInfoModel poiInfoModel ) {
-        showLoadDialog();
+    private void goSearch(final PoiInfoModel poiInfoModel, boolean showLoading) {
+        if (showLoading) {
+            showLoadDialog();
+        }
         addressRecycler.setVisibility(View.GONE);
         LonLatModel lonLatModel = LocationSharepreferences.getLocation(mContext);
         HashMap<String, String> map = new HashMap<>();
@@ -241,8 +237,8 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         map.put("myLatitude", lonLatModel.lat + "");
         map.put("precision", "6");
         map.put("address", poiInfoModel.address);
-        map.put("longitude", poiInfoModel.latitude + "");
-        map.put("latitude", poiInfoModel.longitude + "");
+        map.put("longitude", poiInfoModel.longitude + "");
+        map.put("latitude", poiInfoModel.latitude + "");
         map.put("merge", "1");
         addNetwork(Api.getInstance().getService(ApiService.class).getHomeMapNet(map), new Action1<NetModel>() {
             @Override
@@ -257,6 +253,7 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
                     com.qxb.jianhang.net.event.SearchEvent event = new com.qxb.jianhang.net.event.SearchEvent();
                     model.searchKey = titleView.getSearchKey();
                     event.model = model;
+                    model.searchType = type;
                     EventBus.getDefault().post(event);
 
 
@@ -288,7 +285,18 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
                 titleView.setSearchText(((SearchEvent) event).model.searchKey);
             }
         } else if (event instanceof SearchRefreshEvent) {
-            goSearch(titleView.getSearchKey(),false);
+            if (type == SearchMapTitleView.TYPE_COMPANY) {
+                goSearch(titleView.getSearchKey(), false);
+            } else {
+                if (((SearchRefreshEvent) event).poiInfoModel != null) {
+                    this.poiInfoModel = ((SearchRefreshEvent) event).poiInfoModel ;
+                    titleView.setSearchText(poiInfoModel.name);
+                    goSearch(poiInfoModel, true);
+                }else{
+                    goSearch(poiInfoModel, false);
+                }
+
+            }
         }
     }
 
@@ -303,20 +311,26 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         }
 
         if (res.getAllSuggestions() != null && !res.getAllSuggestions().isEmpty()) {
-            List<PoiInfoModel> list = new ArrayList<>();
-            for (SuggestionResult.SuggestionInfo info : res.getAllSuggestions()) {
-                LogUtil.e(new Gson().toJson(info));
-                if (info.pt != null) {
-                    PoiInfoModel model = new PoiInfoModel();
-                    model.address = info.key;
-                    model.latitude = info.pt.latitude;
-                    model.longitude = info.pt.longitude;
-                    model.name = info.key;
-                    list.add(model);
+
+            if (titleView.getSearchKey().length() > 0) {
+                List<PoiInfoModel> list = new ArrayList<>();
+                for (SuggestionResult.SuggestionInfo info : res.getAllSuggestions()) {
+                    LogUtil.e(new Gson().toJson(info));
+                    if (info.pt != null) {
+                        PoiInfoModel model = new PoiInfoModel();
+                        model.address = info.key;
+                        model.latitude = info.pt.latitude;
+                        model.longitude = info.pt.longitude;
+                        model.name = info.key;
+                        list.add(model);
+                    }
                 }
+                addressRecycler.setVisibility(View.VISIBLE);
+                adapter.setNewData(list);
+            }else{
+                adapter.setNewData(null);
+                addressRecycler.setVisibility(View.GONE);
             }
-            addressRecycler.setVisibility(View.VISIBLE);
-            adapter.setNewData(list);
         } else {
             adapter.setNewData(null);
             addressRecycler.setVisibility(View.GONE);
@@ -362,6 +376,7 @@ public class SearchActivity extends BaseBackActivity implements View.OnClickList
         if (mPoiSearch != null)
             mPoiSearch.destroy();
     }
+
     private void searchAddress(String key) {
         String city = PreferenceUtils.getString(this, Constant.LOC_CITY);
         if (TextUtils.isEmpty(city))

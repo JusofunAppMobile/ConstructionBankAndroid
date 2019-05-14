@@ -122,6 +122,8 @@ public class CompanyItemAdapter<T> extends BaseAdapter<BaseModel> {
                     } else {
                         intent.putExtra(CompanyDetailActivity.COMPANY_ID, data.entid);
                     }
+                    intent.putExtra(CompanyDetailActivity.COMPANY_DISTANCE, data.distance);
+
 
                     intent.putExtra(CompanyDetailActivity.COMPANY_NAME, data.getCompanyname());
 

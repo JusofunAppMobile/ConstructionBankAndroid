@@ -179,6 +179,7 @@ public class HomeOneCompanyView extends BaseView {
                 Intent intent = new Intent(mContext, CompanyDetailActivity.class);
                 intent.putExtra(CompanyDetailActivity.COMPANY_ID, data.getCompanyid());
                 intent.putExtra(CompanyDetailActivity.COMPANY_NAME, data.getCompanyname());
+                intent.putExtra(CompanyDetailActivity.COMPANY_DISTANCE, data.distance);
                 mContext.startActivity(intent);
             }
         });

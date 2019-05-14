@@ -35,11 +35,10 @@ import com.jusfoun.jusfouninquire.view.TitleView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.qxb.jianhang.R;
 import com.qxb.jianhang.net.event.SearchEvent;
-import com.qxb.jianhang.ui.activity.SearchActivity;
+import com.qxb.jianhang.net.event.SearchRefreshEvent;
 import com.qxb.jianhang.ui.adapter.CompayListAdapter;
 import com.qxb.jianhang.ui.adapter.HommSearchTagAdapter;
 import com.qxb.jianhang.ui.constant.Constant;
-import com.qxb.jianhang.ui.data.CompanyListModel;
 import com.qxb.jianhang.ui.data.LonLatModel;
 import com.qxb.jianhang.ui.data.PoiInfoModel;
 import com.qxb.jianhang.ui.data.SearchListModel;
@@ -48,7 +47,6 @@ import com.qxb.jianhang.ui.sharedpreferences.LocationSharepreferences;
 import com.qxb.jianhang.ui.util.AppUtils;
 import com.qxb.jianhang.ui.view.SearchListTitleView;
 import com.qxb.jianhang.ui.view.SearchMapTitleView;
-import com.qxb.jianhang.ui.view.SearchSesultMapTitleView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -85,7 +83,7 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
 
     private int type = SearchMapTitleView.TYPE_COMPANY;
 
-    public static HomeCompanyListFragment getInstance(SearchListModel model,PoiInfoModel poiInfoModel) {
+    public static HomeCompanyListFragment getInstance(SearchListModel model, PoiInfoModel poiInfoModel) {
         HomeCompanyListFragment fragment = new HomeCompanyListFragment();
         if (model != null) {
             Bundle bundle = new Bundle();
@@ -115,7 +113,7 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
             poiInfoModel = (PoiInfoModel) getArguments().get("poiInfoModel");
         }
 
-        mainAdapter = new CompayListAdapter(getChildFragmentManager(), model,poiInfoModel);
+        mainAdapter = new CompayListAdapter(getChildFragmentManager(), model, poiInfoModel);
 
         mPoiSearch = PoiSearch.newInstance();
         mPoiSearch.setOnGetPoiSearchResultListener(this);
@@ -148,18 +146,18 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
         searchListTitleView.setCallBack(new SearchListTitleView.CallBack() {
             @Override
             public void search(String searchKey, int type) {
-                HomeCompanyListFragment.this.type= type;
-                if(type==SearchMapTitleView.TYPE_COMPANY) {
+                HomeCompanyListFragment.this.type = type;
+                if (type == SearchMapTitleView.TYPE_COMPANY) {
                     goSearch(searchKey);
-                }else {
-                    indexAddress(searchKey,type);
+                } else {
+                    indexAddress(searchKey, type);
                 }
             }
 
             @Override
             public void indexAddress(String searchKey, int type) {
-                HomeCompanyListFragment.this.type= type;
-                if(type== SearchMapTitleView.TYPE_ADDRESS) {
+                HomeCompanyListFragment.this.type = type;
+                if (type == SearchMapTitleView.TYPE_ADDRESS) {
                     searchAddress(searchKey);
                 }
             }
@@ -167,7 +165,7 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
         });
 
         if (model != null) {
-            Log.e("tag","initActioninitAction="+model.searchKey);
+            Log.e("tag", "initActioninitAction=" + model.searchKey);
             searchListTitleView.setSearchText(model.searchKey);
             searchListTitleView.setVisibility(View.VISIBLE);
             viewTitleBar.setVisibility(View.GONE);
@@ -176,7 +174,7 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PoiInfoModel model =  (PoiInfoModel)adapter.getItem(position);
+                PoiInfoModel model = (PoiInfoModel) adapter.getItem(position);
                 goSearch(model);
             }
         });
@@ -312,12 +310,17 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
             return;
         }
         if (res.getAllPoi() != null && !res.getAllPoi().isEmpty()) {
-            List<PoiInfoModel> list = new ArrayList<>();
-            for (PoiInfo info : res.getAllPoi()) {
-                list.add(new PoiInfoModel(info));
+            if (searchListTitleView.getSearchKey().length() > 0) {
+                List<PoiInfoModel> list = new ArrayList<>();
+                for (PoiInfo info : res.getAllPoi()) {
+                    list.add(new PoiInfoModel(info));
+                }
+                addressRecycler.setVisibility(View.VISIBLE);
+                adapter.setNewData(list);
+            } else {
+                adapter.setNewData(null);
+                addressRecycler.setVisibility(View.GONE);
             }
-            addressRecycler.setVisibility(View.VISIBLE);
-            adapter.setNewData(list);
         } else {
             adapter.setNewData(null);
             addressRecycler.setVisibility(View.GONE);
@@ -342,6 +345,7 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
         if (mPoiSearch != null)
             mPoiSearch.destroy();
     }
+
     private void searchAddress(String key) {
         String city = PreferenceUtils.getString(mContext, Constant.LOC_CITY);
         if (TextUtils.isEmpty(city))
@@ -352,42 +356,47 @@ public class HomeCompanyListFragment extends BaseViewPagerFragment implements On
                 .pageNum(0));
     }
 
-    private void goSearch(PoiInfoModel poiInfoModel ) {
-        showLoadDialog();
+    private void goSearch(PoiInfoModel poiInfoModel) {
+//        showLoadDialog();
         addressRecycler.setVisibility(View.GONE);
-        LonLatModel lonLatModel = LocationSharepreferences.getLocation(mContext);
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("myLongitude", lonLatModel.lon + "");
-        map.put("myLatitude", lonLatModel.lat + "");
-        map.put("precision", "6");
-        map.put("address", poiInfoModel.address);
-        map.put("longitude", poiInfoModel.latitude + "");
-        map.put("latitude", poiInfoModel.longitude + "");
-        addNetwork(Api.getInstance().getService(ApiService.class).searchNew(map), new Action1<NetModel>() {
-            @Override
-            public void call(NetModel net) {
-                hideLoadDialog();
-                if (net.success()) {
-
-                    CompanyListModel companyListModel = net.dataToObject(CompanyListModel.class);
-                    SearchListModel model = new SearchListModel();
-                    model.list = companyListModel.list;
-                    com.qxb.jianhang.net.event.SearchEvent event = new com.qxb.jianhang.net.event.SearchEvent();
-                    model.searchKey = searchListTitleView.getSearchKey();
-                    event.model = model;
-                    EventBus.getDefault().post(event);
-
-                } else {
-                    hideLoadDialog();
-                    showToast(net.msg);
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                hideLoadDialog();
-                ToastUtils.showHttpError();
-            }
-        });
+//        LonLatModel lonLatModel = LocationSharepreferences.getLocation(mContext);
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("myLongitude", lonLatModel.lon + "");
+//        map.put("myLatitude", lonLatModel.lat + "");
+//        map.put("precision", "6");
+//        map.put("address", poiInfoModel.name);
+//
+//
+//        map.put("longitude", poiInfoModel.longitude + "");
+//        map.put("latitude", poiInfoModel.latitude + "");
+//        addNetwork(Api.getInstance().getService(ApiService.class).searchNew(map), new Action1<NetModel>() {
+//            @Override
+//            public void call(NetModel net) {
+//                hideLoadDialog();
+//                if (net.success()) {
+//
+//                    CompanyListModel companyListModel = net.dataToObject(CompanyListModel.class);
+//                    SearchListModel model = new SearchListModel();
+//                    model.list = companyListModel.list;
+//                    com.qxb.jianhang.net.event.SearchEvent event = new com.qxb.jianhang.net.event.SearchEvent();
+//                    model.searchKey = searchListTitleView.getSearchKey();
+//                    event.model = model;
+//                    EventBus.getDefault().post(event);
+//
+//                } else {
+//                    hideLoadDialog();
+//                    showToast(net.msg);
+//                }
+//            }
+//        }, new Action1<Throwable>() {
+//            @Override
+//            public void call(Throwable throwable) {
+//                hideLoadDialog();
+//                ToastUtils.showHttpError();
+//            }
+//        });
+        SearchRefreshEvent event = new SearchRefreshEvent();
+        event.poiInfoModel = poiInfoModel;
+        EventBus.getDefault().post(event);
     }
 }

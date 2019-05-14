@@ -45,6 +45,7 @@ public class CompanyDetailModel extends BaseModel implements Cloneable {
     private String currentstate;//”当前更新状态 0.正在更新或者未更新 1.已更新成功 ”
     public String taxid;
     public int followState;
+    public String distance;
 
     public LatLonModel topLeft;
     public LatLonModel bottomRight;

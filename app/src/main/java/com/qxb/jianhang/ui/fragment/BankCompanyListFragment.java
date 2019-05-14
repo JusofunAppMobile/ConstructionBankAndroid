@@ -19,6 +19,7 @@ import com.qxb.jianhang.R;
 import com.qxb.jianhang.net.event.SearchAddressEvent;
 import com.qxb.jianhang.net.event.SearchEvent;
 import com.qxb.jianhang.net.event.SearchRefreshEvent;
+import com.qxb.jianhang.net.event.UpdateListEvent;
 import com.qxb.jianhang.ui.adapter.CompanyItemAdapter;
 import com.qxb.jianhang.ui.data.CompanyListModel;
 import com.qxb.jianhang.ui.data.HomeDataItemModel;
@@ -180,7 +181,7 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
 
 
         if (model != null && poiInfoModel != null && model.searchType == SearchMapTitleView.TYPE_ADDRESS) {
-            goSearch(poiInfoModel, isRefresh);
+            goSearch(poiInfoModel, isRefresh,isShowLoading);
             return;
         }
 
@@ -257,16 +258,22 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
     }
 
 
+    private boolean isFirst = true;
     @Override
     protected void refreshData() {
-//        isInit = true;
-        getCompanyList(true, true);
+        isInit = true;
+        if(isFirst) {
+            isFirst = false;
+            getCompanyList(true, true);
+        }else{
+            getCompanyList(true, false);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getCompanyList(true, false);
+//        getCompanyList(true, false);
     }
 
     private void addTag(final HomeDataItemModel model) {
@@ -283,16 +290,14 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
             public void call(NetModel net) {
                 hideLoadDialog();
                 if (net.success()) {
-//                    model.type = Constant.TYPE_TRACK;
                     companyItemAdapter.remove(model);
-//                    companyItemAdapter.notifyDataSetChanged();
-
-
                     showToast("标记成功");
-
-                    if (BankCompanyListFragment.this.model != null) {
+                    if (BankCompanyListFragment.this.model != null&&BankCompanyListFragment.this.model.searchType==SearchMapTitleView.TYPE_COMPANY) {
                         EventBus.getDefault().post(new SearchRefreshEvent());
                     }
+//                    else{
+//                        EventBus.getDefault().post(new UpdateListEvent());
+//                    }
                 } else {
                     showToast(net.msg);
                 }
@@ -310,7 +315,7 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
     public void onEvent(IEvent event) {
         super.onEvent(event);
         if (event instanceof SearchEvent) {
-            if (model != null) {
+            if (model != null&& model.searchType == SearchMapTitleView.TYPE_COMPANY) {
                 if (((SearchEvent) event).model != null) {
                     model = ((SearchEvent) event).model;
                     List<HomeDataItemModel> list = new ArrayList<>();
@@ -328,24 +333,39 @@ public class BankCompanyListFragment extends BaseViewPagerFragment {
             }
         }else if(event instanceof SearchAddressEvent){
             poiInfoModel = ((SearchAddressEvent) event).poiInfoModel;
-            refreshData();
+            if(getUserVisibleHint()){
+                Log.e("tag","getUserVisibleHint1");
+                getCompanyList(true, true);
+            }
+            Log.e("tag","getUserVisibleHint2");
+//
         }
+
+//        else if(event instanceof UpdateListEvent){
+//            if(index==1){
+//                // 标记为目标客户之后 刷新列表 (首页 列表、 搜索地址列表 使用此event刷新)
+//                getCompanyList(true, false);
+//            }
+//        }
     }
 
 
-    private void goSearch(PoiInfoModel poiInfoModel, final boolean isRefresh) {
-        showLoadDialog();
+    private void goSearch(PoiInfoModel poiInfoModel, final boolean isRefresh,boolean isShowLoading) {
+        if(isShowLoading) {
+            showLoadDialog();
+        }
 
         LonLatModel lonLatModel = LocationSharepreferences.getLocation(mContext);
         HashMap<String, Object> map = new HashMap<>();
         map.put("myLongitude", lonLatModel.lon + "");
         map.put("myLatitude", lonLatModel.lat + "");
         map.put("precision", "6");
-        map.put("address", poiInfoModel.address);
-        map.put("longitude", poiInfoModel.latitude + "");
-        map.put("latitude", poiInfoModel.longitude + "");
+        map.put("address", poiInfoModel.name);
+        map.put("longitude", poiInfoModel.longitude + "");
+        map.put("latitude", poiInfoModel.latitude + "");
         map.put("type", "" + (index + 1));
         map.put("pageIndex", isRefresh ? 1 : pageIndex);
+        map.put("pageSize", "" + pageSize);
         map.put("pageSize", "" + pageSize);
         addNetwork(Api.getInstance().getService(ApiService.class).searchNew(map), new Action1<NetModel>() {
             @Override

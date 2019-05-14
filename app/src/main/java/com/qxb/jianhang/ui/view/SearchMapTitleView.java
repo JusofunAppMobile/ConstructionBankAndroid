@@ -45,6 +45,7 @@ public class SearchMapTitleView extends BaseView {
     private ImageView delImg;
 
 
+
     public SearchMapTitleView(Context context) {
         super(context);
     }
@@ -138,7 +139,7 @@ public class SearchMapTitleView extends BaseView {
         delImg.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchText.setText("");
+                editSearch.setText("");
             }
         });
     }

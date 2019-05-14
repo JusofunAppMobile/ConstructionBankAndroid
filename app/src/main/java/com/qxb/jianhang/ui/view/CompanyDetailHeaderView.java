@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -46,7 +47,7 @@ import java.util.Map;
  * Description 企业详情
  */
 public class CompanyDetailHeaderView extends LinearLayout {
-    private TextView company_name, address_content, phone_content, website_content, locationText, stateText;
+    private TextView company_name, address_content, phone_content, website_content, locationText, stateText,distanceText;
 
     private RelativeLayout address_layout, phone_layout, website_layout;
     private LinearLayout bgLayout;
@@ -104,6 +105,7 @@ public class CompanyDetailHeaderView extends LinearLayout {
 
         bgLayout = (LinearLayout) findViewById(R.id.layout_bg);
         tagText = (TextView) findViewById(R.id.text_tag);
+        distanceText = (TextView)findViewById(R.id.text_distance);
 
 
     }
@@ -253,9 +255,10 @@ public class CompanyDetailHeaderView extends LinearLayout {
             stateText.setText("跟进状态:未跟进");
         }
 
-//        stateText.setText(model.getStates());
+        if(!TextUtils.isEmpty(model.distance)) {
+            distanceText.setText("距您" +model.distance+ "米");
+        }
 
-        Log.e("tag","TYPE_UNMARKED="+model.type);
         if (Constant.TYPE_UNMARKED.equals(model.type+"")) {
             bgLayout.setBackgroundResource(R.drawable.img_company_detail_title_bg1);
             tagText.setText("标记为目标客户");
