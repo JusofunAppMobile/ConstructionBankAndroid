@@ -3,6 +3,7 @@ package com.jusfoun.jusfouninquire.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,14 +89,14 @@ public class CompanyInvestmentFragment extends BaseViewPagerFragment {
 
     @Override
     protected void refreshData() {
+        listView.setVisibility(View.INVISIBLE);
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.getString("fristload").equals("true")) {
+        if (arguments != null ) {
             pageIndex = 1;
             model = (CompanyDetailModel) arguments.getSerializable(CompanyDetailsActivity.COMPANY);
             position = arguments.getInt(CompanyDetailsActivity.POSITION, -1);
-
             getInvestOrBranch(LOAD_REFRESH_MODE, pageIndex);
-            arguments.putSerializable("fristload", "false");
+//            arguments.putSerializable("fristload", "false");
         }
     }
 
@@ -165,6 +166,7 @@ public class CompanyInvestmentFragment extends BaseViewPagerFragment {
     public void onEvent(IEvent event) {
         super.onEvent(event);
         if (event instanceof InvestOrBranchEvent) {
+            listView.setVisibility(View.INVISIBLE);
             InvestOrBranchEvent investOrBranchEvent = (InvestOrBranchEvent) event;
             Bundle bundle = ((InvestOrBranchEvent) event).getArgument();
             if (bundle != null) {
@@ -188,9 +190,8 @@ public class CompanyInvestmentFragment extends BaseViewPagerFragment {
     }
 
     private void getInvestOrBranch(final int mode, int pageIndex) {
-        if (model == null && TextUtils.isEmpty(model.getCompanyid()) && position < 0)
+        if (model == null || TextUtils.isEmpty(model.getCompanyid()) && position < 0)
             return;
-
         TimeOut timeOut = new TimeOut(mContext);
         HashMap<String, String> params = new HashMap<>();
         params.put("userid", AppUtils.getUserInfo().id);
@@ -200,6 +201,7 @@ public class CompanyInvestmentFragment extends BaseViewPagerFragment {
         params.put("entname",model.getCompanyname());
         if (sceneAnimation==null)
             sceneAnimation=new SceneAnimation(imageView,75);
+        loading.setVisibility(View.VISIBLE);
         sceneAnimation.start();
         if (model.getSubclassMenu().get(position).getType() == CompanyDetailsActivity.TYPE_INVEST) {
             params.put("type", TYPE_INVEST);
@@ -214,6 +216,7 @@ public class CompanyInvestmentFragment extends BaseViewPagerFragment {
         GetInvestOrBranch.getInvestOrBranch(mContext, params, ((Activity)mContext).getLocalClassName(),new NetWorkCallBack() {
             @Override
             public void onSuccess(Object data) {
+                listView.setVisibility(View.VISIBLE);
                 finishLoadStatus();
                 InvestOrBranchModel model = (InvestOrBranchModel) data;
                 if (model.getResult() == 0) {
